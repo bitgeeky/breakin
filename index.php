@@ -59,6 +59,14 @@ else{
 	}
 	else{
 		echo "<br><b>Ques to be Done</b><br>";
+		echo "<form id='form3' name='form3' method='post' action='ChekAns.php'>".
+			"<input type='hidden' name='qno' value='".$_GET['qcat']."'/>".
+			"<input type='hidden' name='qno' value='".$_GET['qno']."'/>".
+			"<input type='hidden' name='purl' value='".$_SERVER['REQUEST_URI']."'/>".
+			"<input type='text' name='uans' placeholder='Type The Ans Here'/>".
+			"<br><input type='submit' value='Submit'>".
+			"</form>";
+			
 	}
 	$comm = new ShowComments();
 	$comm->show($_GET['qno'],$_GET['qcat']);
