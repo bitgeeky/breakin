@@ -26,5 +26,8 @@ class Ans{
 		} 
 
 	}
+	function check_ans($qno,$qcat,$usrname){
+
+	}
 }
 ?>

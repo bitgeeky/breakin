@@ -18,10 +18,10 @@ BreakIn
 <br><br><br>
 <?php
 echo "<form id='form1' name='form1' method='get' action=''>";
-   for ($i = 1; $i <= 5; $i++){
-    echo 
-"<button type='submit' value=$i name='qcat' >Category $i </button><br>";
-    }
+for ($i = 1; $i <= 5; $i++){
+	echo 
+		"<button type='submit' value=$i name='qcat' >Category $i </button><br>";
+}
 echo"</form>";
 ?>
 </div>
@@ -31,46 +31,57 @@ echo"</form>";
 <div id="ques">
 <?php
 if(!isset($_GET['qcat'])) {
-   echo "The description of Event Goes HERE so and so.....<br/> Now Please select a Category !";
+	echo "The description of Event Goes HERE so and so.....<br/> Now Please select a Category !";
 }
 else{
 	echo "<form id='form2' name='form2' method='get' action=''>".
-	"<input type='hidden' name='qcat' value='".$_GET['qcat']."'/>";
-   for ($i = 1; $i <= 5; $i++){
-    echo  "
-<button type='submit' value=$i name='qno' >Question $i </button>";
-    }
-echo "</form>";
-if(!isset($_GET['qno'])) {
-   echo "Welcome to Category : ".$_GET['qcat']."<br/>";
-   echo "The Description about the category goes here <br/>";
-   echo "Please select a Question !";
-}
-else{
-	require 'class.ShowQues.php';
-	require 'class.ShowComments.php';
-	require 'class.Ans.php';
-	echo "<b>Question No : ".$_GET['qno']."</b><br/>"."Description of Question goes Here...";
-	$temp = new ShowQues();
-	$temp->show($_GET['qno'],$_GET['qcat']);
-	$answer = new Ans();
-	if($answer->check_done($_GET['qno'],$_GET['qcat'],"testusera")){  // user value hard coded as "testusera"
-		echo "<br><b>You Have Already Done this Ques</b><br>"; 
+		"<input type='hidden' name='qcat' value='".$_GET['qcat']."'/>";
+	for ($i = 1; $i <= 5; $i++){
+		echo  "
+			<button type='submit' value=$i name='qno' >Question $i </button>";
+	}
+	echo "</form>";
+	if(!isset($_GET['qno'])) {
+		echo "Welcome to Category : ".$_GET['qcat']."<br/>";
+		echo "The Description about the category goes here <br/>";
+		echo "Please select a Question !";
 	}
 	else{
-		echo "<br><b>Ques to be Done</b><br>";
-		echo "<form id='form3' name='form3' method='post' action='ChekAns.php'>".
-			"<input type='hidden' name='qno' value='".$_GET['qcat']."'/>".
-			"<input type='hidden' name='qno' value='".$_GET['qno']."'/>".
-			"<input type='hidden' name='purl' value='".$_SERVER['REQUEST_URI']."'/>".
-			"<input type='text' name='uans' placeholder='Type The Ans Here'/>".
-			"<br><input type='submit' value='Submit'>".
-			"</form>";
-			
-	}
-	$comm = new ShowComments();
-	$comm->show($_GET['qno'],$_GET['qcat']);
-}	
+		require 'class.ShowQues.php';
+		require 'class.ShowComments.php';
+		require 'class.Ans.php';
+		echo "<b>Question No : ".$_GET['qno']."</b><br/>"."Description of Question goes Here...";
+		$temp = new ShowQues();
+		$temp->show($_GET['qno'],$_GET['qcat']);
+		$answer = new Ans();
+		if($answer->check_done($_GET['qno'],$_GET['qcat'],"testusera")){  // user value hard coded as "testusera"
+			if(isset($_GET['qcode'])){
+				if((int)$_GET['qcode']==1){
+					echo "<br><b>Congratulations Correct Ans!</b><br>";	
+				}
+			}
+			echo "<br><b>You Have Already Done this Ques</b><br>"; 
+		}
+		else{
+			if(isset($_GET['qcode'])){
+				if((int)$_GET['qcode']==0){
+					echo "<br><b>Wrong Ans , Try Again !</b><br>";	
+				}
+			}
+			echo "<br><b>Ques to be Done</b><br>";
+			echo "<form id='form3' name='form3' method='post' action='CheckAns.php'>".
+				"<input type='hidden' name='uname' value='testusera'/>".  //hard coded "testusera"
+				"<input type='hidden' name='qno' value='".$_GET['qno']."'/>".
+				"<input type='hidden' name='qcat' value='".$_GET['qcat']."'/>".
+				"<input type='hidden' name='purl' value='".$_SERVER['REQUEST_URI']."'/>".
+				"<input type='text' name='uans' placeholder='Type The Ans Here'/>".
+				"<br><input type='submit' value='Submit'>".
+				"</form>";
+
+		}
+		$comm = new ShowComments();
+		$comm->show($_GET['qno'],$_GET['qcat']);
+	}	
 }
 ?>        
 </div>
@@ -85,4 +96,4 @@ Felicity IIIT-H</div>
 </body>
 </html>
 
-	
+
