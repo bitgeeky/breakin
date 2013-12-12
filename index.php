@@ -49,9 +49,17 @@ if(!isset($_GET['qno'])) {
 else{
 	require 'class.ShowQues.php';
 	require 'class.ShowComments.php';
+	require 'class.Ans.php';
 	echo "<b>Question No : ".$_GET['qno']."</b><br/>"."Description of Question goes Here...";
 	$temp = new ShowQues();
 	$temp->show($_GET['qno'],$_GET['qcat']);
+	$answer = new Ans();
+	if($answer->check_done($_GET['qno'],$_GET['qcat'],"testusera")){  // user value hard coded as "testusera"
+		echo "<br><b>You Have Already Done this Ques</b><br>"; 
+	}
+	else{
+		echo "<br><b>Ques to be Done</b><br>";
+	}
 	$comm = new ShowComments();
 	$comm->show($_GET['qno'],$_GET['qcat']);
 }	
