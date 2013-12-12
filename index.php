@@ -47,7 +47,10 @@ if(!isset($_GET['qno'])) {
     }
 }
 else{
+	require 'class.ShowQues.php';
 	echo "<b>Question No : ".$_GET['qno']."</b><br/>"."Description of Question goes Here...";
+	$temp = new ShowQues();
+	$temp->show($_GET['qno'],$_GET['qcat']);
 }	
 }
 ?>        
