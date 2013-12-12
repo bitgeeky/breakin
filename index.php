@@ -17,12 +17,12 @@ BreakIn
 <b>Categories</b>
 <br><br><br>
 <?php
+echo "<form id='form1' name='form1' method='get' action=''>";
    for ($i = 1; $i <= 5; $i++){
     echo 
-"<form id='form1' name='form1' method='get' action=''>
-<button type='submit' value=$i name='qcat' >Category $i </button>
-</form>";
+"<button type='submit' value=$i name='qcat' >Category $i </button><br>";
     }
+echo"</form>";
 ?>
 </div>
 
@@ -34,23 +34,26 @@ if(!isset($_GET['qcat'])) {
    echo "The description of Event Goes HERE so and so.....<br/> Now Please select a Category !";
 }
 else{
+	echo "<form id='form2' name='form2' method='get' action=''>".
+	"<input type='hidden' name='qcat' value='".$_GET['qcat']."'/>";
+   for ($i = 1; $i <= 5; $i++){
+    echo  "
+<button type='submit' value=$i name='qno' >Question $i </button>";
+    }
+echo "</form>";
 if(!isset($_GET['qno'])) {
    echo "Welcome to Category : ".$_GET['qcat']."<br/>";
    echo "The Description about the category goes here <br/>";
    echo "Please select a Question !";
-   for ($i = 1; $i <= 5; $i++){
-    echo 
-"<form id='form2' name='form2' method='get' action=''>
-<button type='submit' value=$i name='qno' >Question $i </button>
-<input type='hidden' name='qcat' value='".$_GET['qcat']."'/>
-</form>";
-    }
 }
 else{
 	require 'class.ShowQues.php';
+	require 'class.ShowComments.php';
 	echo "<b>Question No : ".$_GET['qno']."</b><br/>"."Description of Question goes Here...";
 	$temp = new ShowQues();
 	$temp->show($_GET['qno'],$_GET['qcat']);
+	$comm = new ShowComments();
+	$comm->show($_GET['qno'],$_GET['qcat']);
 }	
 }
 ?>        
