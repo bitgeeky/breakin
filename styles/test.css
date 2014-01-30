@@ -1,0 +1,237 @@
+/* HTML5 display-role reset for older sers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style-position: inside;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+/*base*/
+html, body {
+    height: 100%;
+}
+
+body {
+    background-image:url(../images/honeycomb.jpg);
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+a {
+    color: #057cb8;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+.masthead a, .footer a {
+    color: #ccc;
+}
+
+.masthead a:hover, .footer a:hover {
+    color: #057cb8;
+}
+
+body {
+    font-family: 'Open sans', sans-serif;
+}
+
+.masthead, .footer {
+    background-color: #000;
+    color: #eee;
+	font-family: 'Electrolize', sans-serif;
+	font-size: 1.1em;
+}
+
+.masthead {
+    position: relative;
+    height: 4em;
+    line-height: 4em;
+}
+
+.footer-wrapper {
+    background-color: #111;
+}
+
+.footer {
+    padding:  0.5em 1em 1em 1em;
+}
+.footer p {
+line-height: 2em;	
+position: relative;
+	top: 0.5em;
+}
+.footer img {
+	height: 2em;
+	position: relative;
+	top: 0.5em;
+}
+.logo a {
+    color: #057cb8;
+}
+
+.logo {
+    font-family: 'Cabin', sans-serif;
+    font-variant: small-caps;
+    display: inline-block;
+    margin: auto;
+    font-weight: bold;
+    font-family: 'Cabin', sans-serif;
+    transition: color 0.2s;
+    background-color: black;
+    padding: 0 1em;
+    height: 4em;
+}
+.logo img {
+    height: 4em;
+}
+.logo:hover a {
+    color: #eee;
+    transition: color 0.3s;
+}
+.logo a:hover {
+    text-decoration: none;
+}
+.lgsu,
+.lgsuin {
+    float: right;
+    display: inline-block;
+    padding: 0 1em;
+}
+
+.loginbox {
+  background-color: #1a1a1a;
+  position: absolute;
+  right: 0;
+  top: 4em;
+  padding: 1em;
+  z-index: 10;
+  border-radius: 0 0 5px 5px;
+  border: 1px solid transparent;
+}
+.loginbox input[type=submit] {
+  height: 2em;
+  width: 100%;
+}
+.loginbox .clear {
+  display: none;
+}
+.loginbox.out {
+  display: none;
+}
+
+.loginbox input {
+  outline: none;
+  border: 0;
+  width: 10em;
+  line-height: 1.2em;
+  height: 1.5em;
+  padding: 0.2em;
+  font-size: inherit;
+  border-radius: 2px;
+}
+.links {
+    display: inline-block;
+    float: right;
+    margin-right: 2em;
+}
+
+.links a {
+    display: inline-block;
+    margin: 0 1em;
+}
+body {
+  line-height: 1;
+}
+.button-container {
+  text-align: center;
+}
+.button-container button {
+  font-family: 'Nixie One', sans-serif;
+  font-weight: bold;
+  background-color: #666;
+  background-color: rgba(0,0,0,0.75);
+  border: 0;
+  outline: 0;
+  font-size: 1.2em;
+  padding: 1em;
+  color: white;
+  cursor: pointer;
+}
+.button-container button:hover {
+
+}
+.content-wrapper {
+	padding: 0 !important;
+}
+
+.content {
+  padding: 1em;
+}
+
+.heading-wrapper {
+  text-align: center;
+}
+
+.landing {
+	height: 100%;
+}
+.content-wrapper {
+	min-height: 100%;
+}
+
+.landing h1 {
+  display: inline-block;
+  text-align: center;
+  padding: 0.2em;
+  font-size: 9em;
+  margin: auto;
+  background-color: rgba(0,0,0,0.75);
+  color: white;
+  font-family: 'Nixie One', sans-serif;
+  font-variant: small-caps;
+  border-radius: 5px;
+}
+
+.jump-right-arrow {
+  display: inline-block;
+  transition: margin-left 0.2s;
+}
+.button-container button:hover .jump-right-arrow {
+  margin-left: 0.5em;
+  transition: margin-left 0.2s;
+}
+.description {
+  font-size: 1.3em;
+  line-height: 1.6em;
+  margin: 1em 15%;
+  padding: 1.2em;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  border-radius: 5px;
+  text-align: justify;
+}
+.description p {
+  margin: 0.5em;
+}

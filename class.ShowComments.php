@@ -5,7 +5,7 @@ class ShowComments{
 
 		echo "<br/>hey the class works fine".$qno.$qcat."<br/>";
 		echo "<br><b>Comments if there go here :</b><br>";
-		$con=mysqli_connect("localhost","root","iiit123","breakin");
+		$con=mysqli_connect("localhost","breakinbeta","breakin_beta!@#","breakin");
 		// Check connection
 		if (mysqli_connect_errno())
 		{
@@ -15,10 +15,12 @@ class ShowComments{
 
 		while($row = mysqli_fetch_array($result))
 		{
+			if((int)$row['flag']==1){
 			echo $row['username']." [";
 			echo $row['cdate']."] : &nbsp;";
 			echo $row['cdes'];
 			echo "<br>";
+			}
 		}		
 	}		
 }

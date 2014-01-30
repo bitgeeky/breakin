@@ -1,99 +1,102 @@
 <!DOCTYPE html>
-<html>
 <head>
-<title>
-BreakIn
-</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body style="margin:0;padding:0;">
-
-<div id="container" style="width:100%;height:600px">
-<center>
-<div id="header" style="background-color:#2ECCFA;">
-<h1 style="margin-bottom:0;">Break In</h1></div></center>
-
-<div id="menu" style="background-color:#A9F5F2;height:100%;width:20%;float:left;">
-<b>Categories</b>
-<br><br><br>
-<?php
-echo "<form id='form1' name='form1' method='get' action=''>";
-for ($i = 1; $i <= 5; $i++){
-	echo 
-		"<button type='submit' value=$i name='qcat' >Category $i </button><br>";
+<title>Break In | Threads</title>
+<link rel="stylesheet" href="styles/bootstrap.min.css">
+<link rel="stylesheet" href="styles/bootstrap-responsive.min.css">
+<?php include_once 'includer.php';?>
+<style>
+label {
+    line-height: 2em;
 }
-echo"</form>";
+.span-content{
+    padding: 5em;
+}
+</style>
+</head>
+<div class="content-wrapper">
+<?php include_once 'masthead.php'; ?>
+<div class="container">
+<?php
+	$con=mysqli_connect("localhost","breakinbeta","breakin_beta!@#","breakin");
+
+	if (mysqli_connect_errno()){
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+        
+	$exists = 0;
+        $result = mysqli_query($con,"SELECT * FROM userteam");
+        while($iter = mysqli_fetch_array($result))
+                {
+                        if(!strcmp($iter['username'],$user)){
+
+                                $exists = 1;
+                                break;
+                        }
+
+                }
+	if($exists){
+		
+		//************ hard coded location , check on Deployment !!!
+	
+		header('Location: '."http://felicity.iiit.ac.in/threads/breakin/main.php");
+		return;		
+	}
+	
+	if(isset($_GET['jerr'])){
+		echo "<div class='error' style = 'color:red;'><h4>Error :</h4>";
+		echo "PassPhrase Doesn't exists <br/> OR <br/>Empty Strings inserted.</div>";
+	}
+	echo<<<_END
+<div class="row">
+<div class="span6">
+<div class="span-content">
+<h2>Join an Existing Team</h2>
+<form method='post' action='JoinTeam.php'>
+<label for='jteam'>Enter passphrase for the Team:</label>
+<input type='hidden' name='name' value='$user'/>
+<input type='hidden' name='purl' value='$_SERVER[REQUEST_URI]'/>
+<input type='text' id='jteam' name='jteam' placeholder='Passphrase for Team'/>
+<br>
+<input class='btn' type='submit' value='Join Team'>
+</form></div></div>
+_END;
+	if(isset($_GET['cerr'])){
+		echo "<h4>Error : </h4>";
+		echo "Try putting a different Pass Phrase or Team name";
+	}
+
+echo<<<_END
+<div class="span6">
+<div class="span-content">
+<h2>Create your own team</h2>
+<form method='post' action='CreateTeam.php'>
+<label for="cteam">Team Name:</label>
+<input class="span" type='text' name='cteam' id='cteam' placeholder='Team name'/>
+<br>
+<label for="pphrase">Team Passphrase:</label>
+<input class="span" type='text' name='pphrase' id='pphrase' placeholder='Passphrase for Team'/>
+<input type='hidden' name='purl' value='$_SERVER[REQUEST_URI]'/>
+<br>
+<input class='btn' type='submit' value='Create Team'>
+</form>
+</div>
+</div>
+<h3>Instructions on forming teams:</h3><br />
+<h4>
+<ol>
+<li>You are given an option to either join an existing team or to create a new team.</li>
+<li>At this point, exactly one member of your desired team creates a new team. He/She will need to enter a team name and a passphrase. Both of these fields need to be unique. He/She will automatically be the part of the newly created team and will be designated as team-leader.</li>
+<li>Now the team leader needs to share this passphrase only to his team mates. Once they click on join team as this passphrase, they will be the part of the team.</li>
+<li>Forming teams is not a reversible process. So please take care while entering team names, passphrases and while sharing it too.</li>
+<li>There is no limit for team size.</li>
+<li>For any doubts/queries you can join IRC channel for this event: breakin-iiith. Its hosted at freenode.net.</li>
+</ol>
+</h4>
+</div>
+_END;
 ?>
 </div>
-
-<div id="content" style="background-color:#EEEEEE;height:100%;width:80%;float:left;">
-<center>
-<div id="ques">
-<?php
-if(!isset($_GET['qcat'])) {
-	echo "The description of Event Goes HERE so and so.....<br/> Now Please select a Category !";
-}
-else{
-	echo "<form id='form2' name='form2' method='get' action=''>".
-		"<input type='hidden' name='qcat' value='".$_GET['qcat']."'/>";
-	for ($i = 1; $i <= 5; $i++){
-		echo  "
-			<button type='submit' value=$i name='qno' >Question $i </button>";
-	}
-	echo "</form>";
-	if(!isset($_GET['qno'])) {
-		echo "Welcome to Category : ".$_GET['qcat']."<br/>";
-		echo "The Description about the category goes here <br/>";
-		echo "Please select a Question !";
-	}
-	else{
-		require 'class.ShowQues.php';
-		require 'class.ShowComments.php';
-		require 'class.Ans.php';
-		echo "<b>Question No : ".$_GET['qno']."</b><br/>"."Description of Question goes Here...";
-		$temp = new ShowQues();
-		$temp->show($_GET['qno'],$_GET['qcat']);
-		$answer = new Ans();
-		if($answer->check_done($_GET['qno'],$_GET['qcat'],"testusera")){  // user value hard coded as "testusera"
-			if(isset($_GET['qcode'])){
-				if((int)$_GET['qcode']==1){
-					echo "<br><b>Congratulations Correct Ans!</b><br>";	
-				}
-			}
-			echo "<br><b>You Have Already Done this Ques</b><br>"; 
-		}
-		else{
-			if(isset($_GET['qcode'])){
-				if((int)$_GET['qcode']==0){
-					echo "<br><b>Wrong Ans , Try Again !</b><br>";	
-				}
-			}
-			echo "<br><b>Ques to be Done</b><br>";
-			echo "<form id='form3' name='form3' method='post' action='CheckAns.php'>".
-				"<input type='hidden' name='uname' value='testusera'/>".  //hard coded "testusera"
-				"<input type='hidden' name='qno' value='".$_GET['qno']."'/>".
-				"<input type='hidden' name='qcat' value='".$_GET['qcat']."'/>".
-				"<input type='hidden' name='purl' value='".$_SERVER['REQUEST_URI']."'/>".
-				"<input type='text' name='uans' placeholder='Type The Ans Here'/>".
-				"<br><input type='submit' value='Submit'>".
-				"</form>";
-
-		}
-		$comm = new ShowComments();
-		$comm->show($_GET['qno'],$_GET['qcat']);
-	}	
-}
-?>        
 </div>
-</center>
-</div>
-
-<div id="footer" style="background-color:#A9F5F2;clear:both;text-align:center;">
-Felicity IIIT-H</div>
-
-</div>
-
+<?php include_once 'footer.php'; ?>
 </body>
 </html>
-
-

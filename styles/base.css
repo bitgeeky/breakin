@@ -1,0 +1,300 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older sers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style-position: inside;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+/*base*/
+html, body {
+    height: 100%;
+
+}
+
+a {
+    color: #057cb8;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+.masthead a, .footer a {
+    color: #ccc;
+}
+
+.masthead a:hover, .footer a:hover {
+    color: #057cb8;
+}
+
+body {
+    font-family: 'Open sans', sans-serif;
+}
+
+.masthead, .footer {
+    background-color: #000;
+    color: #eee;
+	font-family: 'Electrolize', sans-serif;
+	font-size: 1.1em;
+}
+
+.masthead {
+    position: relative;
+    height: 4em;
+    line-height: 4em;
+}
+
+.footer-wrapper {
+ margin-top: 2em;
+ background-color: #111;
+}
+
+.footer {
+    padding:  0.5em 1em 1em 1em;
+}
+.footer p {
+line-height: 2em;	
+position: relative;
+	top: 0.5em;
+}
+.footer img {
+	height: 2em;
+	position: relative;
+	top: 0.5em;
+}
+.logo a {
+    color: #057cb8;
+}
+
+.logo {
+    font-family: 'Cabin', sans-serif;
+    font-variant: small-caps;
+    display: inline-block;
+    margin: auto;
+    font-weight: bold;
+    font-family: 'Cabin', sans-serif;
+    transition: color 0.2s;
+    background-color: black;
+    padding: 0 1em;
+    height: 4em;
+}
+.logo img {
+    height: 4em;
+}
+.logo:hover a {
+    color: #eee;
+    transition: color 0.3s;
+}
+.logo a:hover {
+    text-decoration: none;
+}
+.lgsu,
+.lgsuin {
+    float: right;
+    display: inline-block;
+    padding: 0 1em;
+}
+
+.loginbox {
+  background-color: #1a1a1a;
+  position: absolute;
+  right: 0;
+  top: 4em;
+  padding: 1em;
+  z-index: 1000;
+  border-radius: 0 0 5px 5px;
+  border: 1px solid transparent;
+}
+.loginbox input[type=submit] {
+  height: 2em;
+  width: 100%;
+}
+.loginbox .clear {
+  display: none;
+}
+.loginbox.out {
+  display: none;
+}
+
+.loginbox input {
+  outline: none;
+  border: 0;
+  width: 10em;
+  line-height: 1.2em;
+  height: 1.5em;
+  padding: 0.2em;
+  font-size: inherit;
+  border-radius: 2px;
+}
+.links {
+    display: inline-block;
+    float: right;
+    margin-right: 2em;
+}
+
+.links a {
+    display: inline-block;
+    margin: 0 1em;
+}
+body {
+  line-height: 1;
+	background: #021623;
+}
+.button-container {
+  text-align: center;
+}
+.button-container button {
+  font-family: 'Nixie One', sans-serif;
+  font-weight: bold;
+  background-color: #666;
+  background-color: rgba(0,0,0,0.75);
+  border: 0;
+  outline: 0;
+  font-size: 1.2em;
+  padding: 1em;
+  color: white;
+  cursor: pointer;
+}
+.button-container button:hover {
+
+}
+.content-wrapper {
+	padding: 0 !important;
+}
+
+.content {
+  padding: 1em;
+}
+
+.heading-wrapper {
+  text-align: center;
+}
+
+.landing {
+	height: 100%;
+}
+.content-wrapper {
+	min-height: 100%;
+}
+
+.landing h1 {
+  display: inline-block;
+  text-align: center;
+  padding: 0.2em;
+  font-size: 9em;
+  margin: auto;
+  background-color: rgba(0,0,0,0.75);
+  color: white;
+  font-family: 'Nixie One', sans-serif;
+  font-variant: small-caps;
+  border-radius: 5px;
+}
+
+.jump-right-arrow {
+  display: inline-block;
+  transition: margin-left 0.2s;
+}
+.button-container button:hover .jump-right-arrow {
+  margin-left: 0.5em;
+  transition: margin-left 0.2s;
+}
+.description {
+  font-size: 1.3em;
+  line-height: 1.6em;
+  margin: 1em 15%;
+  padding: 1.2em;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  border-radius: 5px;
+  text-align: justify;
+}
+.description p {
+  margin: 0.5em;
+}
+.nav.nav-pills {
+	margin: 1em;
+	background-color: rgba(0,0,0,0.2);
+	border-radius: 3px;
+	padding: 8px;
+}
+.nav.nav-tabs li > a, 
+.nav.nav-tabs li.denied > span {
+	margin-left: 50px;
+	padding-right: 20px;
+	font-size: 1.1em;
+	line-height: 1.3em;
+}
+.nav.nav-tabs li.denied > span {
+	padding-right: 18px;
+}
+.table-hover tbody tr:hover>td,.table-hover tbody tr:hover>th{background-color:#153943;}
+hr {
+	margin: 10px 0;
+}
+.vnavbar:before, .vnavbar:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+.vnavbar:after {
+    clear: both;
+}
+.vnavbar:before, .vnavbar:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+.vnavbar {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 1em;
+}
+.vnavbar {
+    width: 1170px;
+}
+.vnavbar {
+    margin: 1em auto !important;
+}
